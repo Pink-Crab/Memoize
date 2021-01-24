@@ -21,9 +21,14 @@ $ composer require pinkcrab/memoize-trait
 ````
 
 ````php
+use PinkCrab\Memoize\Memoizable;
+
 class CategoryRepository {
 
-    use MemoizeAware;
+    /**
+     * Gives access to the Memoize cache
+     */
+    use Memoizable;
 
     /** 
      * Will call the database on the first call.

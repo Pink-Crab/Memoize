@@ -29,7 +29,7 @@ namespace PinkCrab\Memoize;
  *
  * @since 0.2.0
  */
-trait MemoizeAware
+trait Memoizable
 {
 
     /**
