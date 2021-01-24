@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace PinkCrab\Memoize\Tests;
 
-use PinkCrab\Memoize\MemoizeAware;
+use PinkCrab\Memoize\Memoizable;
 
 class HasMemoizeAware
 {
 
-    use MemoizeAware;
+    use Memoizable;
 
     /**
      * Log of all memoize functions called.
