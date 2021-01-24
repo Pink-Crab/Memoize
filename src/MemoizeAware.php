@@ -71,15 +71,13 @@ trait MemoizeAware
      *
      * @param array $parts
      * @return array
-     * @throws Exception If 
+     * @throws Exception If unserializable part.I
      */
     protected function mapHashParts(array $parts): array
     {
         return array_map(
             function ($e) {
                 return serialize($e);
-                // return in_array(gettype($e), array('object', 'array'))
-                //     ? serialize($e) : strval($e);
             },
             $parts
         );
@@ -90,7 +88,7 @@ trait MemoizeAware
      *
      * @return void
      */
-    protected function flush_memoize()
+    protected function flushMemoize()
     {
         self::$memoizeCacheStore = array();
     }
