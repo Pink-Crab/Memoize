@@ -46,14 +46,33 @@ class CategoryRepository {
 ````
 All the methods are protected and are not intended as part of an objects inteface.
 
-# Methods
-## memoize( string $hash, callable $fetch ): mixed
-The hash value should be unique and repeatable/pure, based on the parameters. You can use the built in generateHash(...$scarla). The callable passed, should carry out your operation, before the result is returned, it is passed to the internal cache.
+## Methods
 
-## generateHash(...$parts): string
+### memoize\( string $hash, callable $fetch \): mixed
+
+The hash value should be unique and repeatable/pure, based on the parameters. You can use the built in generateHash\(...$scarla\). The callable passed, should carry out your operation, before the result is returned, it is passed to the internal cache.
+
+```php
+public function doExpensiveCall($param1, $param2): Result 
+{
+    return $this->memoize(
+        // Generate Hash
+        $this->generateHash($param1, $param2),
+        // The fetch/call callable.
+        function() use ($param1, $param2) : Result {
+            return $this->service
+                ->expensiveCall($param1, $param2);
+        }
+    );
+}
+```
+
+### generateHash\(...$parts\): string
+
 Allows the passing of any number of serializable variables and being returned a repeatable hash. This only uses MD5 under the hood, you can create a custom hash generator
 
-## flushMemoize(): void
+### flushMemoize\(\): void
+
 Clears the internal cache array.
 
 ## Dependencies ##
